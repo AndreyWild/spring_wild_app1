@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:util="http://www.springframework.org/schema/util"
+
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    	http://www.springframework.org/schema/beans/spring-beans.xsd
+    	http://www.springframework.org/schema/context
+    	http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/util https://www.springframework.org/schema/util/spring-util.xsd">
+
+<!--    Указываем на файл со значениями-->
+    <context:property-placeholder location="classpath:musicPlayer.properties"/>
+<!--    Так тоже работает-->
+<!--    <context:property-placeholder location="musicPlayer.properties"/>-->
+
+
+
+    <bean id="musicBean"
+          class="com.wild.spring.test4.ClassicalMusic">
+<!--либо  class="com.wild.spring.test3.RockMusic">-->
+<!--        class="com.wild.spring.test3.RapMusic">-->
+<!--        просто Music указывать нельзя, т.к. из интерфейса нельзя создать объект-->
+    </bean>
+
+
+
+
+
+    <bean id="musicPlayerBean"
+          class="com.wild.spring.test4.MusicPlayer"
+    scope="prototype">     <!--Указали prototype - каждый раз будет создаваться новый объект-->
+<!--        Срабатывает метод getMusic -> music (берет из поля name="music") c бином(ref="musicBean") в параметре -->
+        <property name="music" ref="musicBean"/>
+
+<!--        Срабатывают методы setName -> name и setVolume -> volume и им присваиваются значения-->
+<!--        <property name="name" value="SONY"/>-->
+<!--        <property name="volume" value="10"/>-->
+
+<!--        Присваиваем значение через setter с данными из файла (musicPlayer.properties)-->
+        <property name="name" value="${musicPlayer.name}"/>
+        <property name="volume" value="${musicPlayer.volume}"/>
+
+    </bean>
+
+
+
+
+</beans>

@@ -23,5 +23,11 @@
 <!--        просто Music указывать нельзя, т.к. из интерфейса нельзя создать объект-->
     </bean>
 
+    <bean id="musicPlayerBean"
+          class="com.wild.spring.test2.MusicPlayer">
+<!--        Добавляем в конструктор ссылку (ref) на бин "musicBean"-->
+        <constructor-arg ref="musicBean"/>
+    </bean>
+
 
 </beans>
