@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:util="http://www.springframework.org/schema/util"
+
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    	http://www.springframework.org/schema/beans/spring-beans.xsd
+    	http://www.springframework.org/schema/context
+    	http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/util https://www.springframework.org/schema/util/spring-util.xsd">
+
+    <!--    Указываем на файл со значениями-->
+    <context:property-placeholder location="classpath:musicPlayer.properties"/>
+    <!--    Так тоже работает-->
+    <!--    <context:property-placeholder location="musicPlayer.properties"/>-->
+
+
+    <bean id="musicBean"
+          class="com.wild.spring.test5.ClassicalMusic"
+          init-method="doMyInit"
+          destroy-method="doMyDestroy"
+          factory-method="getClassicalMusic">
+        <!-- Init вызовет до создания бина
+        Destroy метод вызовет при завершении работы программы
+        Для бинов "prototype" метод destroy не вызывается, только init
+        factory-method указываем на фабричный метод -->
+
+
+        <!--либо  class="com.wild.spring.test3.RockMusic">-->
+        <!--        class="com.wild.spring.test3.RapMusic">-->
+        <!--        просто Music указывать нельзя, т.к. из интерфейса нельзя создать объект-->
+    </bean>
+
+
+</beans>
